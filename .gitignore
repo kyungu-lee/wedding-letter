@@ -2,3 +2,6 @@ node_modules
 dist
 .DS_Store
 *.local
+
+# Keep full-resolution wedding photos local; optimized copies use hyphenated names.
+public/images/gallery_*.jpg

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { wedding } from './wedding.js';
 
 const pad = (value) => String(value).padStart(2, '0');
-const gallery = Array.from({ length: 6 }, (_, index) => `./images/gallery-${pad(index + 1)}.svg`);
+const gallery = Array.from({ length: 5 }, (_, index) => `./images/gallery-${pad(index + 1)}.jpg`);
 
 function useCountdown(date) {
   const [distance, setDistance] = useState(() => Math.max(0, new Date(date).getTime() - Date.now()));

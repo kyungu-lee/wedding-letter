@@ -17,7 +17,7 @@ export const wedding = {
   },
   date: '2026-10-10T12:30:00+09:00',
   dateLabel: '2026년 10월 10일 토요일 오후 12시 30분',
-  venue: '타니베이 호텔',
+  venue: '타니베이 호텔 L층 해루홀',
   address: '울산 동구 해수욕장5길 43',
   kakaoMapAppUrl: 'kakaomap://search?q=타니베이%20호텔%20울산%20동구%20해수욕장5길%2043',
   naverMapAppUrl: 'nmap://search?query=타니베이%20호텔%20울산%20동구%20해수욕장5길%2043',
