@@ -1,0 +1,2 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+  <defs><linearGradient id="g" y2="1"><stop stop-color="#9e917f"/><stop offset="1" stop-color="#d9cfc2"/></linearGradient></defs><rect width="900" height="1200" fill="url(#g)"/><rect x="165" y="170" width="570" height="700" rx="285" fill="#eee9e0" opacity=".35"/><path d="M300 1200l150-530 150 530" fill="#f3efe9" opacity=".5"/><text x="450" y="1080" text-anchor="middle" fill="#5e554a" font-family="serif" font-size="22" letter-spacing="6">PHOTO 04</text></svg>

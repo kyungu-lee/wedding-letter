@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,500&family=Noto+Serif+KR:wght@300;400;500;600&display=swap');
+
+:root { font-family: 'Noto Serif KR', serif; color: #292621; background: #ddd8d0; font-synthesis: none; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+button, a { font: inherit; }
+button { cursor: pointer; }
+main { width: min(100%, 480px); margin: 0 auto; background: #faf8f4; overflow: hidden; box-shadow: 0 0 50px rgba(56, 47, 36, .12); }
+.scroll-fade { opacity: var(--scroll-opacity, 1); transform: scale(var(--scroll-scale, 1)); transform-origin: center bottom; will-change: opacity, transform; }
+.hero { min-height: 100svh; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 24px; background: #f2eee7; isolation: isolate; }
+.hero-art { position: absolute; inset: 0; overflow: hidden; z-index: -1; opacity: .8; }
+.sun { position: absolute; width: 260px; height: 260px; border-radius: 50%; background: rgba(210, 191, 160, .22); left: 50%; top: 20%; transform: translateX(-50%); }
+.stem { position: absolute; width: 1px; height: 380px; background: #b5a88f; bottom: -60px; transform-origin: bottom; }
+.stem::before, .stem::after { content: ''; position: absolute; width: 75px; height: 34px; border: 1px solid #b5a88f; border-left: 0; border-bottom: 0; border-radius: 0 100% 0 100%; }
+.stem::before { top: 100px; left: 0; transform: rotate(-18deg); }.stem::after { top: 200px; right: 0; transform: scaleX(-1) rotate(-18deg); }
+.stem-one { left: 15%; transform: rotate(-17deg); }.stem-two { right: 12%; transform: rotate(24deg) scale(.8); }
+.hero-kicker, .section-title span { font: 500 10px/1.2 'Cormorant Garamond', serif; letter-spacing: .35em; color: #93846d; }
+.hero-names { display: flex; align-items: center; gap: 15px; margin: 33px 0 23px; }
+.hero-names h1 { margin: 0; font-size: clamp(38px, 12vw, 52px); font-weight: 400; letter-spacing: .15em; }
+.hero-names span { font: italic 28px 'Cormorant Garamond'; color: #9d8b70; }
+.hero-rule { width: 34px; height: 1px; background: #ab9c84; margin-bottom: 24px; }
+.hero-date { font-size: 14px; letter-spacing: .06em; margin: 0 0 9px; }.hero-venue { font-size: 12px; color: #777067; margin: 0; }
+.scroll-hint { position: absolute; bottom: 29px; font: 9px 'Cormorant Garamond'; letter-spacing: .25em; color: #9a9185; writing-mode: vertical-rl; }
+.section { padding: 96px 30px; text-align: center; }
+.section-title { margin-bottom: 48px; }.section-title h2 { margin: 13px 0 0; font-weight: 500; font-size: 22px; letter-spacing: -.03em; }
+.message { font-size: 14px; line-height: 2.15; color: #5b5650; }.message p { margin: 0; }
+.family { margin-top: 47px; padding-top: 30px; border-top: 1px solid #e5ded4; font-size: 13px; line-height: 2.1; }.family p { margin: 0; }.family span { color: #736b62; }.family strong { margin-left: 8px; font-size: 15px; font-weight: 500; }
+.gallery-section { padding-left: 18px; padding-right: 18px; background: #f7f3ed; }
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.gallery figure { margin: 0; aspect-ratio: 3 / 4; overflow: hidden; background: #e4ddd2; }
+.gallery-featured { grid-column: 1 / -1; aspect-ratio: 4 / 5 !important; }
+.gallery img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .7s ease; }
+.gallery figure:hover img { transform: scale(1.025); }
+.gallery-note { margin: 24px 0 0; color: #92887c; font-size: 10px; letter-spacing: .02em; }
+.calendar-section { background: #eee8df; }.calendar { max-width: 340px; margin: 0 auto; }
+.week, .days { display: grid; grid-template-columns: repeat(7, 1fr); }.week { padding-bottom: 15px; border-bottom: 1px solid #d9cfc1; font-size: 10px; color: #9a8e7e; }.days { row-gap: 8px; padding-top: 16px; }
+.days span { display: grid; place-items: center; height: 35px; font-size: 12px; }.days span:nth-child(7n+1) { color: #a6776b; }.wedding-day { width: 35px; border-radius: 50%; background: #8c7a63; color: white !important; margin: auto; position: relative; }.wedding-day::after { content: '♥'; position: absolute; top: -13px; color: #8c7a63; font-size: 8px; }
+.d-day { margin: 42px 0 20px; font-size: 12px; color: #776e63; }.countdown { display: flex; justify-content: center; gap: 13px; }.countdown div { display: flex; flex-direction: column; gap: 7px; }.countdown strong { display: grid; place-items: center; width: 53px; height: 52px; background: rgba(255,255,255,.55); font: 400 21px 'Cormorant Garamond'; }.countdown span { font: 8px 'Cormorant Garamond'; letter-spacing: .12em; color: #948878; }
+.venue-card { text-align: left; background: white; box-shadow: 0 12px 40px rgba(70, 55, 34, .08); }
+.venue-map { display: block; width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: contain; background: #fff; }
+.venue-info { padding: 25px; }.venue-info h3 { margin: 0 0 10px; font-size: 16px; font-weight: 500; }.venue-info p { margin: 0; font: 11px/1.7 sans-serif; color: #777; }.buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 22px; }.buttons a, .buttons button { display: grid; place-items: center; min-width: 0; padding: 12px 4px; text-align: center; border: 1px solid #ddd5ca; background: transparent; color: #514b43; text-decoration: none; font-size: 11px; white-space: nowrap; }
+.access { min-height: 100svh; background: #f1ece4; text-align: left; }
+.access .section-title { text-align: center; }
+.access-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 48px; }
+.access-summary div { min-height: 116px; padding: 19px 15px; display: flex; flex-direction: column; align-items: flex-start; background: rgba(255,255,255,.65); border-top: 2px solid #8c7a63; }
+.access-summary span { font: 500 9px 'Cormorant Garamond'; letter-spacing: .18em; color: #9a8972; }
+.access-summary strong { margin-top: 18px; font-size: 11px; line-height: 1.6; font-weight: 500; }
+.access-summary small { margin-top: auto; font-size: 11px; color: #897c6c; }
+.access-group + .access-group { margin-top: 50px; }
+.access-heading { display: flex; align-items: center; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid #cfc5b8; }
+.access-heading > span { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #aa9a85; border-radius: 50%; font: 13px 'Cormorant Garamond'; color: #8c7a63; }
+.access-heading small { display: block; margin-bottom: 4px; font: 9px 'Cormorant Garamond'; letter-spacing: .2em; color: #998871; }
+.access-heading h3 { margin: 0; font-size: 15px; font-weight: 500; }
+.access-list { list-style: none; margin: 0; padding: 0; }
+.access-list li { position: relative; padding: 18px 0; border-bottom: 1px solid #ded6cb; }
+.access-list strong { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 600; color: #4f4942; }
+.access-list p { margin: 3px 0 0; font: 11px/1.75 sans-serif; color: #716a62; }
+.access-list em { position: absolute; right: 0; top: 20px; font: normal 10px sans-serif; color: #947e63; }
+.access-list b { font-weight: 700; color: #7d6952; }
+.access-list i { font-style: normal; color: #9a9187; white-space: nowrap; }
+.access-note { margin: 28px 0 0; text-align: center; font: 10px/1.6 sans-serif; color: #9a9187; }
+.contact { background: #f0ece5; }.contact-copy { font-size: 13px; line-height: 2; color: #6e675f; }.contact-row { display: flex; gap: 9px; margin-top: 32px; }.contact-row a { flex: 1; padding: 14px 5px; border: 1px solid #d6cbbd; color: #5d554c; text-decoration: none; font-size: 11px; }
+footer { padding: 85px 25px 55px; text-align: center; background: #393630; color: #e8e2d8; }.footer-names { font-size: 24px; letter-spacing: .1em; margin: 0 0 18px; }.footer-names i { font: italic 20px 'Cormorant Garamond'; color: #bfb19a; }.footer-names + p { font-size: 11px; color: #aaa298; }.share { margin-top: 33px; background: transparent; border: 1px solid #726b61; color: #ddd5ca; padding: 13px 28px; font-size: 11px; }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }.reveal.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.reveal { opacity: 1; transform: none; transition: none; }.scroll-fade { opacity: 1 !important; transform: none !important; } }
