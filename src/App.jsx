@@ -185,15 +185,9 @@ function App({ variant }) {
           </div>
         ) : (
           <div className="gallery-carousel reveal" aria-roledescription="carousel" aria-label="웨딩 사진 갤러리">
-            <div className="gallery-viewport">
-              <div className="gallery-track" style={{ transform: `translateX(-${galleryIndex * 100}%)` }}>
-                {gallery.map((src, index) => (
-                  <figure className="gallery-slide" key={src} aria-hidden={index !== galleryIndex}>
-                    <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index === 0 ? 'eager' : 'lazy'} />
-                  </figure>
-                ))}
-              </div>
-            </div>
+            <figure className="gallery-slide" key={gallery[galleryIndex]}>
+              <img src={gallery[galleryIndex]} alt={`웨딩 사진 ${galleryIndex + 1}`} />
+            </figure>
             <div className="gallery-controls">
               <button className="gallery-arrow" onClick={showPreviousPhoto} aria-label="이전 사진">
                 <span aria-hidden="true">←</span>
