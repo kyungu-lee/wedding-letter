@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { wedding } from './wedding.js';
 
 const pad = (value) => String(value).padStart(2, '0');
-const gallery = Array.from({ length: 5 }, (_, index) => `./images/gallery-${pad(index + 1)}.jpg`);
+const imagePath = (filename) => `${import.meta.env.BASE_URL}images/${filename}`;
+const gallery = Array.from({ length: 5 }, (_, index) => imagePath(`gallery-${pad(index + 1)}.jpg`));
 
 function useCountdown(date) {
   const [distance, setDistance] = useState(() => Math.max(0, new Date(date).getTime() - Date.now()));
@@ -276,7 +277,7 @@ function App({ variant }) {
       <section className="location section">
         <SectionTitle eyebrow="LOCATION">오시는 길</SectionTitle>
         <div className="venue-card reveal">
-          <img className="venue-map" src="./images/tanibay-map-final.png" alt="타니베이 호텔 약도: 일산해수욕장 앞 해수욕장5길 43" />
+          <img className="venue-map" src={imagePath('tanibay-map-final.png')} alt="타니베이 호텔 약도: 일산해수욕장 앞 해수욕장5길 43" />
           <div className="venue-info">
             <h3>{wedding.venue}</h3>
             <p>{wedding.address}</p>
