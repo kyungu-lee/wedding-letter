@@ -4,22 +4,23 @@ import { wedding } from './wedding.js';
 const pad = (value) => String(value).padStart(2, '0');
 const imagePath = (filename) => `${import.meta.env.BASE_URL}images/${filename}`;
 const gallery = [
-  'gallery/SON00001.jpg',
-  'gallery/SON00261.jpg',
-  'gallery/SON01361_2.jpg',
-  'gallery/SON01645.jpg',
-  'gallery/SON02049.jpg',
-  'gallery/SON02241.jpg',
-  'gallery/SON02765_2.jpg',
-  'gallery/SON03452.jpg',
-  'gallery/SON04004 (1).jpg',
-  'gallery/SON04232_2.jpg',
-  'gallery/SON04338.jpg',
-  'gallery/SON04460.jpg',
-  'gallery/SON04502.jpg',
-  'gallery/SON04648_2.jpg',
-  'gallery/SON05073.jpg',
-].map((filename) => imagePath(filename.replace('gallery/', 'gallery-web/')));
+  'gallery_1.jpg',
+  'gallery_2.jpg',
+  'gallery_3.jpg',
+  'gallery_4.jpg',
+  'gallery_5.jpg',
+  'gallery_6.jpg',
+  'gallery_7.jpg',
+  'gallery_8.jpg',
+  'gallery_9.jpg',
+  'gallery_10.jpg',
+  'gallery_11.jpg',
+  'gallery_12.jpg',
+  'gallery_13.jpg',
+  'gallery_14.jpg',
+  'gallery_15.jpg',
+  'gallery_16.jpeg',
+].map((filename) => imagePath(`gallery-web/${filename}`));
 
 function useCountdown(date) {
   const [distance, setDistance] = useState(() => Math.max(0, new Date(date).getTime() - Date.now()));
