@@ -20,7 +20,7 @@ const gallery = [
   'gallery_14.jpg',
   'gallery_15.jpeg',
   'gallery_16.jpg',
-].map((filename) => imagePath(`gallery-web/${filename}`));
+].map((filename) => `${imagePath(`gallery-web/${filename}`)}?v=20260802-2`);
 
 function useCountdown(date) {
   const [distance, setDistance] = useState(() => Math.max(0, new Date(date).getTime() - Date.now()));
