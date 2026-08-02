@@ -3,7 +3,23 @@ import { wedding } from './wedding.js';
 
 const pad = (value) => String(value).padStart(2, '0');
 const imagePath = (filename) => `${import.meta.env.BASE_URL}images/${filename}`;
-const gallery = Array.from({ length: 5 }, (_, index) => imagePath(`gallery-${pad(index + 1)}.jpg`));
+const gallery = [
+  'gallery/SON00001.jpg',
+  'gallery/SON00261.jpg',
+  'gallery/SON01361_2.jpg',
+  'gallery/SON01645.jpg',
+  'gallery/SON02049.jpg',
+  'gallery/SON02241.jpg',
+  'gallery/SON02765_2.jpg',
+  'gallery/SON03452.jpg',
+  'gallery/SON04004 (1).jpg',
+  'gallery/SON04232_2.jpg',
+  'gallery/SON04338.jpg',
+  'gallery/SON04460.jpg',
+  'gallery/SON04502.jpg',
+  'gallery/SON04648_2.jpg',
+  'gallery/SON05073.jpg',
+].map((filename) => imagePath(`gallery-web/${filename}`));
 
 function useCountdown(date) {
   const [distance, setDistance] = useState(() => Math.max(0, new Date(date).getTime() - Date.now()));
@@ -72,7 +88,7 @@ function App({ variant }) {
   const [galleryIndex, setGalleryIndex] = useState(0);
   const showPreviousPhoto = () => setGalleryIndex((index) => (index - 1 + gallery.length) % gallery.length);
   const showNextPhoto = () => setGalleryIndex((index) => (index + 1) % gallery.length);
-  const useGridGallery = variant === 'test1';
+  const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'masonry' : 'story';
   const showAccounts = variant !== 'test3';
 
   useEffect(() => {
@@ -175,16 +191,24 @@ function App({ variant }) {
 
       <section className="gallery-section section">
         <SectionTitle eyebrow="OUR MOMENTS">우리의 빛나는 순간</SectionTitle>
-        {useGridGallery ? (
-          <div className="gallery-grid reveal">
+        {galleryStyle === 'editorial' ? (
+          <div className="gallery-editorial reveal">
             {gallery.map((src, index) => (
-              <figure className={index === 0 ? 'gallery-featured' : ''} key={src}>
+              <figure className={`editorial-photo editorial-photo-${index + 1}`} key={src}>
+                <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index > 1 ? 'lazy' : 'eager'} />
+              </figure>
+            ))}
+          </div>
+        ) : galleryStyle === 'masonry' ? (
+          <div className="gallery-masonry reveal">
+            {gallery.map((src, index) => (
+              <figure key={src}>
                 <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index > 1 ? 'lazy' : 'eager'} />
               </figure>
             ))}
           </div>
         ) : (
-          <div className="gallery-carousel reveal" aria-roledescription="carousel" aria-label="웨딩 사진 갤러리">
+          <div className="gallery-story reveal" aria-roledescription="carousel" aria-label="웨딩 사진 갤러리">
             <figure className="gallery-slide" key={gallery[galleryIndex]}>
               <img src={gallery[galleryIndex]} alt={`웨딩 사진 ${galleryIndex + 1}`} />
             </figure>
@@ -199,6 +223,19 @@ function App({ variant }) {
               <button className="gallery-arrow" onClick={showNextPhoto} aria-label="다음 사진">
                 <span aria-hidden="true">→</span>
               </button>
+            </div>
+            <div className="gallery-thumbnails" aria-label="사진 선택">
+              {gallery.map((src, index) => (
+                <button
+                  className={index === galleryIndex ? 'active' : ''}
+                  onClick={() => setGalleryIndex(index)}
+                  aria-label={`${index + 1}번 사진 보기`}
+                  aria-current={index === galleryIndex ? 'true' : undefined}
+                  key={src}
+                >
+                  <img src={src} alt="" loading="lazy" />
+                </button>
+              ))}
             </div>
           </div>
         )}
