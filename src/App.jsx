@@ -65,12 +65,14 @@ function AccountCard({ account }) {
   );
 }
 
-function App() {
+function App({ variant }) {
   const countdown = useCountdown(wedding.date);
   const [openAccountSide, setOpenAccountSide] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
   const showPreviousPhoto = () => setGalleryIndex((index) => (index - 1 + gallery.length) % gallery.length);
   const showNextPhoto = () => setGalleryIndex((index) => (index + 1) % gallery.length);
+  const useGridGallery = variant === 'test1';
+  const showAccounts = variant !== 'test3';
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -172,29 +174,39 @@ function App() {
 
       <section className="gallery-section section">
         <SectionTitle eyebrow="OUR MOMENTS">우리의 빛나는 순간</SectionTitle>
-        <div className="gallery-carousel reveal" aria-roledescription="carousel" aria-label="웨딩 사진 갤러리">
-          <div className="gallery-viewport">
-            <div className="gallery-track" style={{ transform: `translateX(-${galleryIndex * 100}%)` }}>
-              {gallery.map((src, index) => (
-                <figure className="gallery-slide" key={src} aria-hidden={index !== galleryIndex}>
-                  <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index === 0 ? 'eager' : 'lazy'} />
-                </figure>
-              ))}
+        {useGridGallery ? (
+          <div className="gallery-grid reveal">
+            {gallery.map((src, index) => (
+              <figure className={index === 0 ? 'gallery-featured' : ''} key={src}>
+                <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index > 1 ? 'lazy' : 'eager'} />
+              </figure>
+            ))}
+          </div>
+        ) : (
+          <div className="gallery-carousel reveal" aria-roledescription="carousel" aria-label="웨딩 사진 갤러리">
+            <div className="gallery-viewport">
+              <div className="gallery-track" style={{ transform: `translateX(-${galleryIndex * 100}%)` }}>
+                {gallery.map((src, index) => (
+                  <figure className="gallery-slide" key={src} aria-hidden={index !== galleryIndex}>
+                    <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index === 0 ? 'eager' : 'lazy'} />
+                  </figure>
+                ))}
+              </div>
+            </div>
+            <div className="gallery-controls">
+              <button className="gallery-arrow" onClick={showPreviousPhoto} aria-label="이전 사진">
+                <span aria-hidden="true">←</span>
+              </button>
+              <p aria-live="polite">
+                <strong>{pad(galleryIndex + 1)}</strong>
+                <span> / {pad(gallery.length)}</span>
+              </p>
+              <button className="gallery-arrow" onClick={showNextPhoto} aria-label="다음 사진">
+                <span aria-hidden="true">→</span>
+              </button>
             </div>
           </div>
-          <div className="gallery-controls">
-            <button className="gallery-arrow" onClick={showPreviousPhoto} aria-label="이전 사진">
-              <span aria-hidden="true">←</span>
-            </button>
-            <p aria-live="polite">
-              <strong>{pad(galleryIndex + 1)}</strong>
-              <span> / {pad(gallery.length)}</span>
-            </p>
-            <button className="gallery-arrow" onClick={showNextPhoto} aria-label="다음 사진">
-              <span aria-hidden="true">→</span>
-            </button>
-          </div>
-        </div>
+        )}
         <p className="gallery-note reveal">우리의 소중한 순간을 담았습니다.</p>
       </section>
 
@@ -361,38 +373,42 @@ function App() {
       </section>
 
       <section className="contact section">
-        <SectionTitle eyebrow="CONTACT">마음을 전하는 곳</SectionTitle>
-        <p className="contact-copy reveal">
-          멀리서도 축하의 마음을 전해주시는
-          <br />
-          모든 분께 깊이 감사드립니다.
-        </p>
-        <div className="account-accordions reveal">
-          {[
-            { key: 'groom', label: '신랑측에게', accounts: wedding.accounts.groom },
-            { key: 'bride', label: '신부측에게', accounts: wedding.accounts.bride },
-          ].map(({ key, label, accounts }) => {
-            const isOpen = openAccountSide === key;
-            return (
-              <div className={`account-accordion ${isOpen ? 'open' : ''}`} key={key}>
-                <button
-                  className="account-toggle"
-                  onClick={() => setOpenAccountSide(isOpen ? null : key)}
-                  aria-expanded={isOpen}
-                  aria-controls={`${key}-accounts`}
-                >
-                  <span>{label}</span>
-                  <i aria-hidden="true" />
-                </button>
-                <div className="account-list" id={`${key}-accounts`} aria-hidden={!isOpen}>
-                  <div className="account-list-content">
-                    {accounts.map((account) => <AccountCard account={account} key={account.relation} />)}
+        <SectionTitle eyebrow="CONTACT">{showAccounts ? '마음을 전하는 곳' : '연락처'}</SectionTitle>
+        {showAccounts && (
+          <>
+            <p className="contact-copy reveal">
+              멀리서도 축하의 마음을 전해주시는
+              <br />
+              모든 분께 깊이 감사드립니다.
+            </p>
+            <div className="account-accordions reveal">
+              {[
+                { key: 'groom', label: '신랑측에게', accounts: wedding.accounts.groom },
+                { key: 'bride', label: '신부측에게', accounts: wedding.accounts.bride },
+              ].map(({ key, label, accounts }) => {
+                const isOpen = openAccountSide === key;
+                return (
+                  <div className={`account-accordion ${isOpen ? 'open' : ''}`} key={key}>
+                    <button
+                      className="account-toggle"
+                      onClick={() => setOpenAccountSide(isOpen ? null : key)}
+                      aria-expanded={isOpen}
+                      aria-controls={`${key}-accounts`}
+                    >
+                      <span>{label}</span>
+                      <i aria-hidden="true" />
+                    </button>
+                    <div className="account-list" id={`${key}-accounts`} aria-hidden={!isOpen}>
+                      <div className="account-list-content">
+                        {accounts.map((account) => <AccountCard account={account} key={account.relation} />)}
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+                );
+              })}
+            </div>
+          </>
+        )}
         <div className="contact-row reveal">
           <a href={`tel:${wedding.groom.phone}`}>신랑에게 연락하기</a>
           <a href={`tel:${wedding.bride.phone}`}>신부에게 연락하기</a>
