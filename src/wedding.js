@@ -15,6 +15,18 @@ export const wedding = {
     relation: '장녀',
     phone: '010-7595-9474',
   },
+  accounts: {
+    groom: [
+      { relation: '신랑', name: '이경우', bank: '', number: '' },
+      { relation: '신랑 아버지', name: '이동열', bank: '', number: '' },
+      { relation: '신랑 어머니', name: '박영애', bank: '', number: '' },
+    ],
+    bride: [
+      { relation: '신부', name: '전선진', bank: '', number: '' },
+      { relation: '신부 아버지', name: '전희목', bank: '', number: '' },
+      { relation: '신부 어머니', name: '손기조', bank: '', number: '' },
+    ],
+  },
   date: '2026-10-10T12:30:00+09:00',
   dateLabel: '2026년 10월 10일 토요일 오후 12시 30분',
   venue: '타니베이 호텔 L층 해루홀',

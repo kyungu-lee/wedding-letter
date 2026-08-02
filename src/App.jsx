@@ -34,8 +34,43 @@ function SectionTitle({ eyebrow, children }) {
   );
 }
 
+function AccountCard({ account }) {
+  const hasAccount = account.bank && account.number;
+
+  const copyAccount = async () => {
+    if (!hasAccount) return;
+    await navigator.clipboard.writeText(account.number);
+    window.alert('계좌번호를 복사했습니다.');
+  };
+
+  return (
+    <article className="account-card">
+      <div className="account-person">
+        <span>{account.relation}</span>
+        <strong>{account.name}</strong>
+      </div>
+      {hasAccount ? (
+        <button className="account-number" onClick={copyAccount} aria-label={`${account.name} 계좌번호 복사`}>
+          <span>
+            <small>{account.bank}</small>
+            <b>{account.number}</b>
+          </span>
+          <i aria-hidden="true" />
+          <em>복사</em>
+        </button>
+      ) : (
+        <p className="account-pending">계좌 정보는 추후 안내드릴 예정입니다.</p>
+      )}
+    </article>
+  );
+}
+
 function App() {
   const countdown = useCountdown(wedding.date);
+  const [openAccountSide, setOpenAccountSide] = useState(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
+  const showPreviousPhoto = () => setGalleryIndex((index) => (index - 1 + gallery.length) % gallery.length);
+  const showNextPhoto = () => setGalleryIndex((index) => (index + 1) % gallery.length);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -137,18 +172,34 @@ function App() {
 
       <section className="gallery-section section">
         <SectionTitle eyebrow="OUR MOMENTS">우리의 빛나는 순간</SectionTitle>
-        <div className="gallery reveal">
-          {gallery.map((src, index) => (
-            <figure className={index === 0 ? 'gallery-featured' : ''} key={src}>
-              <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index > 1 ? 'lazy' : 'eager'} />
-            </figure>
-          ))}
+        <div className="gallery-carousel reveal" aria-roledescription="carousel" aria-label="웨딩 사진 갤러리">
+          <div className="gallery-viewport">
+            <div className="gallery-track" style={{ transform: `translateX(-${galleryIndex * 100}%)` }}>
+              {gallery.map((src, index) => (
+                <figure className="gallery-slide" key={src} aria-hidden={index !== galleryIndex}>
+                  <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index === 0 ? 'eager' : 'lazy'} />
+                </figure>
+              ))}
+            </div>
+          </div>
+          <div className="gallery-controls">
+            <button className="gallery-arrow" onClick={showPreviousPhoto} aria-label="이전 사진">
+              <span aria-hidden="true">←</span>
+            </button>
+            <p aria-live="polite">
+              <strong>{pad(galleryIndex + 1)}</strong>
+              <span> / {pad(gallery.length)}</span>
+            </p>
+            <button className="gallery-arrow" onClick={showNextPhoto} aria-label="다음 사진">
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
         </div>
         <p className="gallery-note reveal">우리의 소중한 순간을 담았습니다.</p>
       </section>
 
       <section className="calendar-section section">
-        <SectionTitle eyebrow="THE WEDDING DAY">2026. 10. 24</SectionTitle>
+        <SectionTitle eyebrow="THE WEDDING DAY">2026. 10. 10</SectionTitle>
         <div className="calendar reveal">
           <div className="week">
             {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
@@ -193,7 +244,7 @@ function App() {
               30,
               31,
             ].map((day, index) => (
-              <span key={`${day}-${index}`} className={day === 24 ? 'wedding-day' : ''}>
+              <span key={`${day}-${index}`} className={day === 10 ? 'wedding-day' : ''}>
                 {day}
               </span>
             ))}
@@ -316,6 +367,32 @@ function App() {
           <br />
           모든 분께 깊이 감사드립니다.
         </p>
+        <div className="account-accordions reveal">
+          {[
+            { key: 'groom', label: '신랑측에게', accounts: wedding.accounts.groom },
+            { key: 'bride', label: '신부측에게', accounts: wedding.accounts.bride },
+          ].map(({ key, label, accounts }) => {
+            const isOpen = openAccountSide === key;
+            return (
+              <div className={`account-accordion ${isOpen ? 'open' : ''}`} key={key}>
+                <button
+                  className="account-toggle"
+                  onClick={() => setOpenAccountSide(isOpen ? null : key)}
+                  aria-expanded={isOpen}
+                  aria-controls={`${key}-accounts`}
+                >
+                  <span>{label}</span>
+                  <i aria-hidden="true" />
+                </button>
+                <div className="account-list" id={`${key}-accounts`} aria-hidden={!isOpen}>
+                  <div className="account-list-content">
+                    {accounts.map((account) => <AccountCard account={account} key={account.relation} />)}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
         <div className="contact-row reveal">
           <a href={`tel:${wedding.groom.phone}`}>신랑에게 연락하기</a>
           <a href={`tel:${wedding.bride.phone}`}>신부에게 연락하기</a>
