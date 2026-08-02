@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { wedding } from './wedding.js';
 
 const pad = (value) => String(value).padStart(2, '0');
@@ -18,8 +18,8 @@ const gallery = [
   'gallery_12.jpg',
   'gallery_13.jpg',
   'gallery_14.jpg',
-  'gallery_15.jpg',
-  'gallery_16.jpeg',
+  'gallery_15.jpeg',
+  'gallery_16.jpg',
 ].map((filename) => imagePath(`gallery-web/${filename}`));
 
 function useCountdown(date) {
@@ -87,10 +87,17 @@ function App({ variant }) {
   const countdown = useCountdown(wedding.date);
   const [openAccountSide, setOpenAccountSide] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const thumbnailStripRef = useRef(null);
   const showPreviousPhoto = () => setGalleryIndex((index) => (index - 1 + gallery.length) % gallery.length);
   const showNextPhoto = () => setGalleryIndex((index) => (index + 1) % gallery.length);
   const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'masonry' : 'story';
   const showAccounts = variant !== 'test3';
+
+  useEffect(() => {
+    if (galleryStyle !== 'story') return;
+    const activeThumbnail = thumbnailStripRef.current?.querySelector('[aria-current="true"]');
+    activeThumbnail?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }, [galleryIndex, galleryStyle]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -225,7 +232,7 @@ function App({ variant }) {
                 <span aria-hidden="true">→</span>
               </button>
             </div>
-            <div className="gallery-thumbnails" aria-label="사진 선택">
+            <div className="gallery-thumbnails" aria-label="사진 선택" ref={thumbnailStripRef}>
               {gallery.map((src, index) => (
                 <button
                   className={index === galleryIndex ? 'active' : ''}
