@@ -18,8 +18,8 @@ export const wedding = {
   accounts: {
     groom: [
       { relation: '신랑', name: '이경우', bank: '우리', number: '1002045888647' },
-      { relation: '신랑 아버지', name: '이동열', bank: '우리', number: '1002045888647' },
-      { relation: '신랑 어머니', name: '박영애', bank: '우리', number: '1002045888647' },
+      { relation: '신랑 아버지', name: '이동열', bank: '토스', number: '100144454501' },
+      { relation: '신랑 어머니', name: '박영애', bank: '새마을', number: '9003254535702' },
     ],
     bride: [
       { relation: '신부', name: '전선진', bank: '토스', number: '100003801771' },
