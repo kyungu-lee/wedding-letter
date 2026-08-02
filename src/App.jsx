@@ -319,7 +319,7 @@ function App({ variant }) {
       <section className="location section">
         <SectionTitle eyebrow="LOCATION">오시는 길</SectionTitle>
         <div className="venue-card reveal">
-          <img className="venue-map" src={imagePath('tanibay-map-final.png')} alt="타니베이 호텔 약도: 일산해수욕장 앞 해수욕장5길 43" />
+          <img className="venue-map" src={imagePath('최종-약도.png')} alt="타니베이 호텔 약도: 일산해수욕장 앞 해수욕장5길 43" />
           <div className="venue-info">
             <h3>{wedding.venue}</h3>
             <p>{wedding.address}</p>
