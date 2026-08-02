@@ -17,14 +17,14 @@ export const wedding = {
   },
   accounts: {
     groom: [
-      { relation: '신랑', name: '이경우', bank: '', number: '' },
-      { relation: '신랑 아버지', name: '이동열', bank: '', number: '' },
-      { relation: '신랑 어머니', name: '박영애', bank: '', number: '' },
+      { relation: '신랑', name: '이경우', bank: '1002045888647', number: '' },
+      { relation: '신랑 아버지', name: '이동열', bank: '1002045888647', number: '' },
+      { relation: '신랑 어머니', name: '박영애', bank: '1002045888647', number: '' },
     ],
     bride: [
-      { relation: '신부', name: '전선진', bank: '', number: '' },
-      { relation: '신부 아버지', name: '전희목', bank: '', number: '' },
-      { relation: '신부 어머니', name: '손기조', bank: '', number: '' },
+      { relation: '신부', name: '전선진', bank: '100003801771', number: '' },
+      { relation: '신부 아버지', name: '전희목', bank: '3560445209413', number: '' },
+      { relation: '신부 어머니', name: '손기조', bank: '3522265952343', number: '' },
     ],
   },
   date: '2026-10-10T12:30:00+09:00',
