@@ -108,38 +108,6 @@ function App({ variant }) {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const sections = [...document.querySelectorAll('main > section, main > footer')];
-    let frameId;
-
-    const updateSectionFade = () => {
-      const fadeDistance = window.innerHeight * 0.42;
-
-      sections.forEach((section) => {
-        const { bottom } = section.getBoundingClientRect();
-        const opacity = Math.min(1, Math.max(0, bottom / fadeDistance));
-        section.style.setProperty('--scroll-opacity', opacity.toFixed(3));
-        section.style.setProperty('--scroll-scale', (0.985 + opacity * 0.015).toFixed(4));
-      });
-      frameId = undefined;
-    };
-
-    const requestUpdate = () => {
-      if (!frameId) frameId = window.requestAnimationFrame(updateSectionFade);
-    };
-
-    sections.forEach((section) => section.classList.add('scroll-fade'));
-    updateSectionFade();
-    window.addEventListener('scroll', requestUpdate, { passive: true });
-    window.addEventListener('resize', requestUpdate);
-
-    return () => {
-      window.removeEventListener('scroll', requestUpdate);
-      window.removeEventListener('resize', requestUpdate);
-      if (frameId) window.cancelAnimationFrame(frameId);
-    };
-  }, []);
-
   const copyAddress = async () => {
     await navigator.clipboard.writeText(wedding.address);
     window.alert('주소를 복사했습니다.');
