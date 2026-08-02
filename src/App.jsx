@@ -348,23 +348,6 @@ function App({ variant }) {
             </div>
           </div>
           <p className="parking-notice">예식 당일 호텔 주차장 또는 별관 주차장을 무료로 이용하실 수 있습니다.</p>
-          <ul className="access-list car-list">
-            <li>
-              <strong>울산공항</strong>
-              <p>아산로 경유 · 15km</p>
-              <em>약 20분</em>
-            </li>
-            <li>
-              <strong>태화강역</strong>
-              <p>아산로 경유 · 11km</p>
-              <em>약 15분</em>
-            </li>
-            <li>
-              <strong>울산역(KTX)</strong>
-              <p>울밀로 경유 · 33km</p>
-              <em>약 50분</em>
-            </li>
-          </ul>
         </div>
 
         <div className="access-group reveal">

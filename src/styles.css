@@ -45,7 +45,7 @@ main { width: min(100%, 480px); margin: 0 auto; background: #faf8f4; overflow: h
 .access-heading > span { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #aa9a85; border-radius: 50%; font: 13px 'Cormorant Garamond'; color: #8c7a63; }
 .access-heading small { display: block; margin-bottom: 4px; font: 9px 'Cormorant Garamond'; letter-spacing: .2em; color: #998871; }
 .access-heading h3 { margin: 0; font-size: 15px; font-weight: 500; }
-.parking-notice { margin: 17px 0 0; padding: 13px 15px; background: rgba(255,255,255,.55); color: #71685d; font: 11px/1.75 sans-serif; }
+.parking-notice { margin: 0; padding: 18px 0; border-bottom: 1px solid #ded6cb; color: #716a62; font: 11px/1.75 sans-serif; }
 .access-list { list-style: none; margin: 0; padding: 0; }
 .access-list li { position: relative; padding: 18px 0; border-bottom: 1px solid #ded6cb; }
 .access-list strong { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 600; color: #4f4942; }
