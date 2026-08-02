@@ -339,19 +339,6 @@ function App({ variant }) {
       <section className="access section">
         <SectionTitle eyebrow="TRANSPORTATION">교통 안내</SectionTitle>
 
-        <div className="access-summary reveal">
-          <div>
-            <span>AIR</span>
-            <strong>김포공항 → 울산공항</strong>
-            <small>약 45분</small>
-          </div>
-          <div>
-            <span>KTX</span>
-            <strong>서울역 → 울산역</strong>
-            <small>약 2시간 20분</small>
-          </div>
-        </div>
-
         <div className="access-group reveal">
           <div className="access-heading">
             <span>01</span>
@@ -360,6 +347,7 @@ function App({ variant }) {
               <h3>차량으로 오시는 경우</h3>
             </div>
           </div>
+          <p className="parking-notice">예식 당일 호텔 주차장 또는 별관 주차장을 무료로 이용하실 수 있습니다.</p>
           <ul className="access-list car-list">
             <li>
               <strong>울산공항</strong>

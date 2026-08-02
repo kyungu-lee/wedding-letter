@@ -40,16 +40,12 @@ main { width: min(100%, 480px); margin: 0 auto; background: #faf8f4; overflow: h
 .venue-info { padding: 25px; }.venue-info h3 { margin: 0 0 10px; font-size: 16px; font-weight: 500; }.venue-info p { margin: 0; font: 11px/1.7 sans-serif; color: #777; }.buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 22px; }.buttons a, .buttons button { display: grid; place-items: center; min-width: 0; padding: 12px 4px; text-align: center; border: 1px solid #ddd5ca; background: transparent; color: #514b43; text-decoration: none; font-size: 11px; white-space: nowrap; }
 .access { min-height: 100svh; background: #f1ece4; text-align: left; }
 .access .section-title { text-align: center; }
-.access-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 48px; }
-.access-summary div { min-height: 116px; padding: 19px 15px; display: flex; flex-direction: column; align-items: flex-start; background: rgba(255,255,255,.65); border-top: 2px solid #8c7a63; }
-.access-summary span { font: 500 9px 'Cormorant Garamond'; letter-spacing: .18em; color: #9a8972; }
-.access-summary strong { margin-top: 18px; font-size: 11px; line-height: 1.6; font-weight: 500; }
-.access-summary small { margin-top: auto; font-size: 11px; color: #897c6c; }
 .access-group + .access-group { margin-top: 50px; }
 .access-heading { display: flex; align-items: center; gap: 14px; padding-bottom: 16px; border-bottom: 1px solid #cfc5b8; }
 .access-heading > span { display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid #aa9a85; border-radius: 50%; font: 13px 'Cormorant Garamond'; color: #8c7a63; }
 .access-heading small { display: block; margin-bottom: 4px; font: 9px 'Cormorant Garamond'; letter-spacing: .2em; color: #998871; }
 .access-heading h3 { margin: 0; font-size: 15px; font-weight: 500; }
+.parking-notice { margin: 17px 0 0; padding: 13px 15px; background: rgba(255,255,255,.55); color: #71685d; font: 11px/1.75 sans-serif; }
 .access-list { list-style: none; margin: 0; padding: 0; }
 .access-list li { position: relative; padding: 18px 0; border-bottom: 1px solid #ded6cb; }
 .access-list strong { display: block; margin-bottom: 7px; font-size: 12px; font-weight: 600; color: #4f4942; }
