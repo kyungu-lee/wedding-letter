@@ -17,9 +17,9 @@ export const wedding = {
   },
   accounts: {
     groom: [
-      { relation: '신랑', name: '이경우', bank: '우리', number: '002045888647' },
-      { relation: '신랑 아버지', name: '이동열', bank: '우리', number: '002045888647' },
-      { relation: '신랑 어머니', name: '박영애', bank: '우리', number: '002045888647' },
+      { relation: '신랑', name: '이경우', bank: '우리', number: '1002045888647' },
+      { relation: '신랑 아버지', name: '이동열', bank: '우리', number: '1002045888647' },
+      { relation: '신랑 어머니', name: '박영애', bank: '우리', number: '1002045888647' },
     ],
     bride: [
       { relation: '신부', name: '전선진', bank: '토스', number: '100003801771' },
@@ -36,8 +36,10 @@ export const wedding = {
   kakaoMapUrl: 'https://map.kakao.com/link/search/울산%20동구%20해수욕장5길%2043',
   naverMapUrl: 'https://map.naver.com/p/search/울산%20동구%20해수욕장5길%2043',
   message: [
-    '서로의 가장 좋은 친구로 지내온 두 사람이',
-    '이제 같은 곳을 바라보며 걸어가려 합니다.',
-    '저희의 새로운 시작을 따뜻한 마음으로 축복해 주세요.',
+    '깊어가는 가을',
+    '서로의 내일이 되기로 한 두 사람이',
+    '새로운 출발을 시작합니다.',
+    '소중한 걸음으로 함께하시어',
+    '따뜻한 축복을 전해 주시면 감사하겠습니다.',
   ],
 };
