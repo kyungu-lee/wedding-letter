@@ -210,7 +210,7 @@ function App({ variant }) {
         ) : galleryStyle === 'masonry' ? (
           <div className="gallery-masonry reveal">
             {gallery.map((src, index) => (
-              <figure key={src}>
+              <figure className={index === 0 || index === gallery.length - 1 ? 'gallery-wide' : ''} key={src}>
                 <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index > 1 ? 'lazy' : 'eager'} />
               </figure>
             ))}
