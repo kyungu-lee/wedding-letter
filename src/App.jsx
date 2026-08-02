@@ -289,7 +289,10 @@ function App({ variant }) {
               30,
               31,
             ].map((day, index) => (
-              <span key={`${day}-${index}`} className={day === 10 ? 'wedding-day' : ''}>
+              <span
+                key={`${day}-${index}`}
+                className={[day === 10 && 'wedding-day', [5, 9].includes(day) && 'holiday'].filter(Boolean).join(' ')}
+              >
                 {day}
               </span>
             ))}
