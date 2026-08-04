@@ -90,7 +90,7 @@ function App({ variant }) {
   const thumbnailStripRef = useRef(null);
   const showPreviousPhoto = () => setGalleryIndex((index) => (index - 1 + gallery.length) % gallery.length);
   const showNextPhoto = () => setGalleryIndex((index) => (index + 1) % gallery.length);
-  const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'masonry' : 'story';
+  const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'journal' : 'story';
   const showAccounts = variant !== 'test3';
 
   useEffect(() => {
@@ -175,11 +175,12 @@ function App({ variant }) {
               </figure>
             ))}
           </div>
-        ) : galleryStyle === 'masonry' ? (
-          <div className="gallery-masonry reveal">
+        ) : galleryStyle === 'journal' ? (
+          <div className="gallery-journal reveal">
             {gallery.map((src, index) => (
-              <figure className={index === 0 || index === gallery.length - 1 ? 'gallery-wide' : ''} key={src}>
+              <figure key={src}>
                 <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index > 1 ? 'lazy' : 'eager'} />
+                <span>{pad(index + 1)}</span>
               </figure>
             ))}
           </div>
