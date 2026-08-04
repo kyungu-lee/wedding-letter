@@ -123,7 +123,7 @@ function App({ variant }) {
   };
 
   return (
-    <main>
+    <main className={`design-${variant}`}>
       <section className="hero">
         <div className="hero-art" aria-hidden="true">
           <div className="sun" />
