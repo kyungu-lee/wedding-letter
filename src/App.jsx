@@ -101,7 +101,10 @@ function App({ variant }) {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.target.classList.toggle('visible', entry.isIntersecting)),
+      (entries) => entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+        else if (entry.target.offsetHeight <= window.innerHeight) entry.target.classList.remove('visible');
+      }),
       { threshold: 0.15 }
     );
     document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
