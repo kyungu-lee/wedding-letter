@@ -83,18 +83,28 @@ function AccountCard({ account }) {
   );
 }
 
-function App({ variant }) {
+function App({ variant, showAccounts }) {
   const countdown = useCountdown(wedding.date);
   const [openAccountSide, setOpenAccountSide] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
   const thumbnailStripRef = useRef(null);
-  const showPreviousPhoto = () => setGalleryIndex((index) => (index - 1 + gallery.length) % gallery.length);
-  const showNextPhoto = () => setGalleryIndex((index) => (index + 1) % gallery.length);
+  const galleryInteractionRef = useRef(false);
+  const showPreviousPhoto = () => {
+    galleryInteractionRef.current = true;
+    setGalleryIndex((index) => (index - 1 + gallery.length) % gallery.length);
+  };
+  const showNextPhoto = () => {
+    galleryInteractionRef.current = true;
+    setGalleryIndex((index) => (index + 1) % gallery.length);
+  };
+  const selectPhoto = (index) => {
+    galleryInteractionRef.current = true;
+    setGalleryIndex(index);
+  };
   const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'journal' : 'story';
-  const showAccounts = variant !== 'test3';
 
   useEffect(() => {
-    if (galleryStyle !== 'story') return;
+    if (galleryStyle !== 'story' || !galleryInteractionRef.current) return;
     const activeThumbnail = thumbnailStripRef.current?.querySelector('[aria-current="true"]');
     activeThumbnail?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   }, [galleryIndex, galleryStyle]);
@@ -208,7 +218,7 @@ function App({ variant }) {
               {gallery.map((src, index) => (
                 <button
                   className={index === galleryIndex ? 'active' : ''}
-                  onClick={() => setGalleryIndex(index)}
+                  onClick={() => selectPhoto(index)}
                   aria-label={`${index + 1}번 사진 보기`}
                   aria-current={index === galleryIndex ? 'true' : undefined}
                   key={src}

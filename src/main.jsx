@@ -4,9 +4,15 @@ import App from './App.jsx'
 import './styles.css'
 
 const variant = document.documentElement.dataset.variant ?? 'test2'
+const showAccounts = document.documentElement.dataset.showAccounts !== 'false'
+
+if ('scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual'
+}
+window.scrollTo(0, 0)
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App variant={variant} />
+    <App variant={variant} showAccounts={showAccounts} />
   </StrictMode>,
 )

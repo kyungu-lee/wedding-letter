@@ -12,7 +12,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(rootDirectory, 'index.html'),
-        test1: resolve(rootDirectory, 'test1/index.html'),
         guest: resolve(rootDirectory, 'guest/index.html'),
         invitation: resolve(rootDirectory, 'invitation/index.html'),
       },
