@@ -13,8 +13,8 @@ export default defineConfig({
       input: {
         main: resolve(rootDirectory, 'index.html'),
         test1: resolve(rootDirectory, 'test1/index.html'),
-        test2: resolve(rootDirectory, 'test2/index.html'),
-        test3: resolve(rootDirectory, 'test3/index.html'),
+        guest: resolve(rootDirectory, 'guest/index.html'),
+        invitation: resolve(rootDirectory, 'invitation/index.html'),
       },
     },
   },
