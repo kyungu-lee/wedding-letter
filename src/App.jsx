@@ -109,7 +109,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
     galleryInteractionRef.current = true;
     setGalleryIndex(index);
   };
-  const galleryStyle = galleryType === 'start' ? 'scroll' : variant === 'test1' ? 'editorial' : variant === 'test3' ? 'journal' : 'story';
+  const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'journal' : 'story';
 
   useEffect(() => {
     if (galleryStyle !== 'story' || !galleryInteractionRef.current) return;
@@ -188,15 +188,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
 
       <section className="gallery-section section">
         <SectionTitle eyebrow="OUR MOMENTS">우리의 빛나는 순간</SectionTitle>
-        {galleryStyle === 'scroll' ? (
-          <div className="gallery-scroll reveal" aria-label="웨딩 사진 갤러리">
-            {gallery.map((src, index) => (
-              <figure key={src}>
-                <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index > 0 ? 'lazy' : 'eager'} />
-              </figure>
-            ))}
-          </div>
-        ) : galleryStyle === 'editorial' ? (
+        {galleryStyle === 'editorial' ? (
           <div className="gallery-editorial reveal">
             {gallery.map((src, index) => (
               <figure className={`editorial-photo editorial-photo-${index + 1}`} key={src}>
@@ -230,7 +222,11 @@ function App({ variant, showAccounts, gallery: galleryType }) {
                 <span aria-hidden="true">→</span>
               </button>
             </div>
-            <div className="gallery-thumbnails" aria-label="사진 선택" ref={thumbnailStripRef}>
+            <div
+              className={`gallery-thumbnails ${galleryType === 'start' ? 'gallery-thumbnails-centered' : ''}`}
+              aria-label="사진 선택"
+              ref={thumbnailStripRef}
+            >
               {gallery.map((src, index) => (
                 <button
                   className={index === galleryIndex ? 'active' : ''}
