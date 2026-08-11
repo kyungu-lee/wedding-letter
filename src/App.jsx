@@ -23,10 +23,10 @@ const defaultGallery = [
 ].map((filename) => `${imagePath(`gallery-web/${filename}`)}?v=20260802-2`);
 
 const startGallery = [
-  'gallery_1.jpg',
-  'gallery_12.jpg',
-  'gallery_14.jpg',
-  'gallery_16.jpg',
+  'SON00349_2.jpg',
+  'SON01361_2.jpg',
+  'SON04232_2.jpg',
+  'SON04648_2.jpg',
 ].map((filename) => imagePath(`gallery-start/${filename}`));
 
 function useCountdown(date) {
@@ -109,7 +109,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
     galleryInteractionRef.current = true;
     setGalleryIndex(index);
   };
-  const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'journal' : 'story';
+  const galleryStyle = galleryType === 'start' ? 'scroll' : variant === 'test1' ? 'editorial' : variant === 'test3' ? 'journal' : 'story';
 
   useEffect(() => {
     if (galleryStyle !== 'story' || !galleryInteractionRef.current) return;
@@ -188,7 +188,15 @@ function App({ variant, showAccounts, gallery: galleryType }) {
 
       <section className="gallery-section section">
         <SectionTitle eyebrow="OUR MOMENTS">우리의 빛나는 순간</SectionTitle>
-        {galleryStyle === 'editorial' ? (
+        {galleryStyle === 'scroll' ? (
+          <div className="gallery-scroll reveal" aria-label="웨딩 사진 갤러리">
+            {gallery.map((src, index) => (
+              <figure key={src}>
+                <img src={src} alt={`웨딩 사진 ${index + 1}`} loading={index > 0 ? 'lazy' : 'eager'} />
+              </figure>
+            ))}
+          </div>
+        ) : galleryStyle === 'editorial' ? (
           <div className="gallery-editorial reveal">
             {gallery.map((src, index) => (
               <figure className={`editorial-photo editorial-photo-${index + 1}`} key={src}>
