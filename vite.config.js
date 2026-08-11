@@ -14,6 +14,7 @@ export default defineConfig({
         main: resolve(rootDirectory, 'index.html'),
         default: resolve(rootDirectory, 'default/index.html'),
         guest: resolve(rootDirectory, 'guest/index.html'),
+        start: resolve(rootDirectory, 'start/index.html'),
         invitation: resolve(rootDirectory, 'invitation/index.html'),
       },
     },

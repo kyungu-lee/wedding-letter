@@ -3,7 +3,7 @@ import { wedding } from './wedding.js';
 
 const pad = (value) => String(value).padStart(2, '0');
 const imagePath = (filename) => `${import.meta.env.BASE_URL}images/${filename}`;
-const gallery = [
+const defaultGallery = [
   'gallery_1.jpg',
   'gallery_2.jpg',
   'gallery_3.jpg',
@@ -21,6 +21,13 @@ const gallery = [
   'gallery_15.jpeg',
   'gallery_16.jpg',
 ].map((filename) => `${imagePath(`gallery-web/${filename}`)}?v=20260802-2`);
+
+const startGallery = [
+  'gallery_1.jpg',
+  'gallery_12.jpg',
+  'gallery_14.jpg',
+  'gallery_16.jpg',
+].map((filename) => imagePath(`gallery-start/${filename}`));
 
 function useCountdown(date) {
   const [distance, setDistance] = useState(() => Math.max(0, new Date(date).getTime() - Date.now()));
@@ -83,7 +90,8 @@ function AccountCard({ account }) {
   );
 }
 
-function App({ variant, showAccounts }) {
+function App({ variant, showAccounts, gallery: galleryType }) {
+  const gallery = galleryType === 'start' ? startGallery : defaultGallery;
   const countdown = useCountdown(wedding.date);
   const [openAccountSide, setOpenAccountSide] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
