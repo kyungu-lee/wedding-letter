@@ -1,9 +1,6 @@
 name: Deploy test preview to GitHub Pages
 
 on:
-  push:
-    branches:
-      - design/mobile-invite-v2
   workflow_dispatch:
 
 permissions:
@@ -29,6 +26,7 @@ jobs:
       - name: Check out test design source
         uses: actions/checkout@v4
         with:
+          ref: design/mobile-invite-v2
           path: test
 
       - name: Set up Node.js
