@@ -95,8 +95,11 @@ function App({ variant, showAccounts, gallery: galleryType }) {
   const countdown = useCountdown(wedding.date);
   const [openAccountSide, setOpenAccountSide] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
+  const [glassSceneIndex, setGlassSceneIndex] = useState(0);
   const thumbnailStripRef = useRef(null);
   const galleryInteractionRef = useRef(false);
+  const touchStartYRef = useRef(null);
+  const sceneChangeLockRef = useRef(false);
   const showPreviousPhoto = () => {
     galleryInteractionRef.current = true;
     setGalleryIndex((index) => (index - 1 + gallery.length) % gallery.length);
@@ -110,6 +113,32 @@ function App({ variant, showAccounts, gallery: galleryType }) {
     setGalleryIndex(index);
   };
   const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'journal' : 'story';
+  const glassMode = variant === 'glass';
+  const glassSceneCount = 8;
+
+  const changeGlassScene = (direction) => {
+    if (!glassMode || sceneChangeLockRef.current) return;
+    sceneChangeLockRef.current = true;
+    setGlassSceneIndex((index) => Math.min(glassSceneCount - 1, Math.max(0, index + direction)));
+    window.setTimeout(() => { sceneChangeLockRef.current = false; }, 520);
+  };
+
+  const handleGlassWheel = (event) => {
+    if (!glassMode || Math.abs(event.deltaY) < 12) return;
+    event.preventDefault();
+    changeGlassScene(event.deltaY > 0 ? 1 : -1);
+  };
+
+  const handleGlassTouchStart = (event) => {
+    if (glassMode) touchStartYRef.current = event.touches[0]?.clientY ?? null;
+  };
+
+  const handleGlassTouchEnd = (event) => {
+    if (!glassMode || touchStartYRef.current === null) return;
+    const distance = touchStartYRef.current - (event.changedTouches[0]?.clientY ?? touchStartYRef.current);
+    touchStartYRef.current = null;
+    if (Math.abs(distance) > 42) changeGlassScene(distance > 0 ? 1 : -1);
+  };
 
   useEffect(() => {
     if (galleryStyle !== 'story' || !galleryInteractionRef.current) return;
@@ -144,7 +173,12 @@ function App({ variant, showAccounts, gallery: galleryType }) {
   };
 
   return (
-    <main className={`design-${variant}`}>
+    <main
+      className={`design-${variant} ${glassMode ? `glass-active-${glassSceneIndex}` : ''}`}
+      onWheel={handleGlassWheel}
+      onTouchStart={handleGlassTouchStart}
+      onTouchEnd={handleGlassTouchEnd}
+    >
       <section className="hero">
         <div className="hero-art" aria-hidden="true">
           <div className="sun" />
@@ -432,6 +466,19 @@ function App({ variant, showAccounts, gallery: galleryType }) {
           청첩장 공유하기
         </button>
       </footer>
+      {glassMode && (
+        <nav className="glass-pagination" aria-label="청첩장 장면 이동">
+          {Array.from({ length: glassSceneCount }, (_, index) => (
+            <button
+              aria-label={`${index + 1}번째 장면 보기`}
+              aria-current={index === glassSceneIndex ? 'true' : undefined}
+              className={index === glassSceneIndex ? 'active' : ''}
+              key={index}
+              onClick={() => setGlassSceneIndex(index)}
+            />
+          ))}
+        </nav>
+      )}
     </main>
   );
 }

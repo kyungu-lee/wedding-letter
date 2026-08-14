@@ -7,7 +7,7 @@ const rootDirectory = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
   plugins: [react()],
-  base: '/wedding-letter/',
+  base: process.env.VITE_BASE_PATH ?? '/wedding-letter/',
   build: {
     rollupOptions: {
       input: {
