@@ -169,6 +169,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
           <h1>{wedding.bride.firstName}</h1>
         </div>
         <p className="hero-glass-date" aria-hidden="true">2026.10.10</p>
+        <p className="hero-event-info" aria-label="예식 시간 및 장소">12:30 PM <span>·</span> 타니베이 호텔 L층 해루홀</p>
         <div className="hero-rule" />
         <p className="hero-date">{wedding.dateLabel}</p>
         <p className="hero-venue">{wedding.venue}</p>

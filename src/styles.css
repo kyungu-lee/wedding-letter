@@ -62,7 +62,7 @@ footer { padding: 85px 25px 55px; text-align: center; background: #393630; color
 /* Glass — soft, translucent mobile invitation */
 .design-glass { position: relative; isolation: isolate; color: #26314a; background: radial-gradient(circle at 8% 8%, rgba(255,187,213,.72), transparent 28%), radial-gradient(circle at 94% 22%, rgba(184,220,255,.88), transparent 34%), radial-gradient(circle at 40% 72%, rgba(234,210,255,.72), transparent 40%), #e9efff; box-shadow: 0 24px 70px rgba(68,92,150,.2); }
 .design-glass .hero { min-height: 100svh; padding: 76px 30px 60px; justify-content: flex-end; align-items: flex-start; overflow: hidden; background: linear-gradient(135deg, rgba(255,255,255,.66), rgba(255,255,255,.17)), url('/wedding-letter/images/gallery-web/gallery_1.jpg?v=20260802-2') center / cover; }
-.hero-photo, .hero-glass-date { display: none; }
+.hero-photo, .hero-glass-date, .hero-event-info { display: none; }
 .design-glass .hero::before, .design-glass .hero::after { content: ''; position: absolute; border-radius: 999px; filter: blur(2px); pointer-events: none; }.design-glass .hero::before { width: 230px; height: 230px; right: -74px; top: 68px; background: rgba(192,217,255,.58); }.design-glass .hero::after { width: 176px; height: 176px; left: -80px; bottom: 104px; background: rgba(255,203,224,.48); }
 .design-glass .hero-art { display: none; }.design-glass .hero-kicker, .design-glass .hero-names, .design-glass .hero-rule, .design-glass .hero-date, .design-glass .hero-venue { position: relative; z-index: 1; }.design-glass .hero-kicker { color: #34415c; text-shadow: 0 1px 16px rgba(255,255,255,.9); }.design-glass .hero-names { margin: 25px 0 18px; gap: 12px; }.design-glass .hero-names h1 { color: #23304b; font-size: clamp(46px, 13vw, 59px); letter-spacing: .06em; text-shadow: 0 2px 16px rgba(255,255,255,.78); }.design-glass .hero-names span { color: #7282ae; }.design-glass .hero-rule { width: 74px; background: rgba(38,49,74,.65); }.design-glass .hero-date, .design-glass .hero-venue { color: #31405e; text-shadow: 0 1px 12px rgba(255,255,255,.9); }.design-glass .scroll-hint { color: #405171; }
 .design-glass .section { margin: 12px; padding: 66px 24px; border: 1px solid rgba(255,255,255,.74); border-radius: 18px; background: linear-gradient(135deg, rgba(255,255,255,.64), rgba(255,255,255,.27)); box-shadow: inset 0 1px 0 rgba(255,255,255,.72), 0 13px 30px rgba(83,105,158,.11); backdrop-filter: blur(18px) saturate(135%); -webkit-backdrop-filter: blur(18px) saturate(135%); }.design-glass .section-title { margin-bottom: 34px; }.design-glass .section-title span { color: #7381a5; }.design-glass .section-title h2 { color: #28344e; font-size: 23px; }.design-glass .message, .design-glass .family, .design-glass .contact-copy { color: #485571; }.design-glass .family { border-color: rgba(113,132,174,.25); }
@@ -86,14 +86,15 @@ footer { padding: 85px 25px 55px; text-align: center; background: #393630; color
 .design-glass .hero-kicker { top: 36px; color: #fffdf8; font: 400 clamp(88px, 24vw, 112px)/.67 'Oooh Baby', cursive; letter-spacing: -.02em; text-shadow: 0 2px 12px rgba(48,39,29,.3); }.design-glass .hero-kicker span { display: block; }.design-glass .hero-names, .design-glass .hero-rule, .design-glass .hero-date, .design-glass .hero-venue { display: none; }.design-glass .hero-glass-date { top: auto; bottom: 48px; color: #fffdf8; font: 500 19px/1 'Cormorant Garamond', serif; letter-spacing: .12em; text-shadow: 0 2px 10px rgba(48,39,29,.35); }
 
 /* Hero typography — quiet corner details leave the photograph as the focus. */
-.design-glass .hero-kicker { top: 42px; left: 28px; width: auto; text-align: left; }
-.design-glass .hero-glass-date { right: auto; bottom: 34px; left: 28px; transform: none; font-size: 17px; letter-spacing: .15em; }
-.design-glass .hero-names { position: absolute; z-index: 2; right: 28px; bottom: 35px; left: auto; display: flex; align-items: baseline; gap: 7px; margin: 0; color: #fffdf8; text-shadow: 0 2px 10px rgba(48,39,29,.35); }
+.design-glass .hero-kicker { top: 34px; left: 26px; width: auto; text-align: left; }
+.design-glass .hero-glass-date { right: auto; bottom: 64px; left: 28px; transform: none; font-size: 17px; letter-spacing: .15em; }
+.design-glass .hero-event-info { position: absolute; z-index: 2; bottom: 34px; left: 28px; display: block; margin: 0; color: #493a2d; font: 500 10px/1.4 'Noto Serif KR', serif; letter-spacing: .04em; text-shadow: 0 1px 8px rgba(255, 250, 241, .78); }.design-glass .hero-event-info span { margin: 0 5px; }
+.design-glass .hero-names { position: absolute; z-index: 2; top: 158px; right: auto; bottom: auto; left: 28px; display: flex; align-items: baseline; gap: 7px; margin: 0; padding-top: 9px; border-top: 1px solid rgba(73,58,45,.36); color: #493a2d; text-shadow: 0 1px 8px rgba(255, 250, 241, .78); }
 .design-glass .hero-names h1 { margin: 0; color: inherit; font: 500 12px/1 'Cormorant Garamond', 'Noto Serif KR', serif; letter-spacing: .13em; text-shadow: inherit; }
 .design-glass .hero-names span { display: block; color: inherit; font: italic 13px/1 'Cormorant Garamond', serif; }
 .design-glass .hero-kicker, .design-glass .hero-glass-date, .design-glass .hero-names { color: #493a2d; text-shadow: 0 1px 8px rgba(255, 250, 241, .78); }
-.design-glass .hero-kicker { font-size: clamp(72px, 20vw, 92px); line-height: .72; }
-.design-glass .hero-names { gap: 9px; bottom: 33px; }
+.design-glass .hero-kicker { font-size: clamp(58px, 17vw, 78px); line-height: .76; }
+.design-glass .hero-names { gap: 9px; }
 .design-glass .hero-names h1 { font-size: 15px; letter-spacing: .1em; }
 .design-glass .hero-names span { font-size: 16px; }
 
@@ -119,9 +120,9 @@ main > .section, main > footer { position: relative; overflow: hidden; }
 .design-glass footer, .design-glass footer p { color: #554a3c; }.design-glass footer .footer-names { color: #4d4438; }.design-glass footer .footer-message { color: #756958; }.design-glass footer .share { color: #665842; }
 
 /* Glass layout — regular vertical scroll keeps every interaction natural. */
-.design-glass { height: auto; overflow: visible; }
+.design-glass { height: auto; overflow: visible; padding-top: 10px; }
 .design-glass > .hero, .design-glass > .section, .design-glass > footer { position: relative; inset: auto; margin: 12px; min-height: auto; overflow: hidden; border-radius: 18px; opacity: 1; pointer-events: auto; transform: none; transition: none; }
-.design-glass > .hero { min-height: calc(100svh - 24px); padding: 76px 30px 60px; border: 1px solid rgba(255,255,255,.74); }.design-glass > .section { padding: 66px 24px; }.design-glass > footer { min-height: calc(100svh - 24px); display: flex; flex-direction: column; justify-content: center; padding: 66px 25px 44px; }
+.design-glass > .hero { height: calc(100svh - 22px); min-height: calc(100svh - 22px); margin-top: 0; padding: 76px 30px 60px; border: 1px solid rgba(255,255,255,.74); }.design-glass > .section { padding: 66px 24px; }.design-glass > footer { min-height: calc(100svh - 24px); display: flex; flex-direction: column; justify-content: center; padding: 66px 25px 44px; }
 .design-glass > .gallery-section { padding: 24px 20px 18px; }.design-glass > .gallery-section .section-title { margin-bottom: 18px; }.design-glass > .gallery-section .section-title h2 { font-size: 21px; }.design-glass .gallery-story { width: min(100%, 250px); }.design-glass .gallery-story .gallery-slide { aspect-ratio: 4 / 5; }.design-glass .gallery-controls { gap: 13px; margin-top: 10px; }.design-glass .gallery-thumbnails { gap: 5px; margin-top: 10px; padding-bottom: 4px; }.design-glass .gallery-thumbnails button { flex-basis: 40px; height: 50px; }.design-glass .gallery-note { margin-top: 12px; }
 @media (max-height: 600px) { .design-glass > .gallery-section { padding-top: 18px; padding-bottom: 14px; }.design-glass > .gallery-section .section-title { margin-bottom: 12px; }.design-glass .gallery-story { width: min(100%, 220px); }.design-glass .gallery-thumbnails button { flex-basis: 36px; height: 44px; }.design-glass .gallery-note { margin-top: 8px; } }
 .design-glass .gallery-story { width: min(100%, 300px); }
