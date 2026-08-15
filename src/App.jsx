@@ -67,36 +67,6 @@ function PetalLayer() {
   );
 }
 
-function HeroHandwriting() {
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  return (
-    <svg className="hero-handwriting" viewBox="0 0 420 240" aria-hidden="true">
-      <defs>
-        <linearGradient id="hero-ink-edge" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0" stopColor="#fff" />
-          <stop offset=".94" stopColor="#fff" />
-          <stop offset="1" stopColor="#777" />
-        </linearGradient>
-        <mask id="hero-first-ink" maskUnits="userSpaceOnUse" x="0" y="0" width="420" height="145">
-          <rect width="420" height="240" fill="#000" />
-          <rect x="94" y="8" width={reduceMotion ? 238 : 0} height="137" fill="url(#hero-ink-edge)">
-            {!reduceMotion && <animate attributeName="width" from="0" to="238" begin=".12s" dur="1.7s" calcMode="spline" keySplines=".33 0 .2 1" fill="freeze" />}
-          </rect>
-        </mask>
-        <mask id="hero-second-ink" maskUnits="userSpaceOnUse" x="0" y="91" width="420" height="135">
-          <rect width="420" height="240" fill="#000" />
-          <rect x="74" y="91" width={reduceMotion ? 276 : 0} height="135" fill="url(#hero-ink-edge)">
-            {!reduceMotion && <animate attributeName="width" from="0" to="276" begin="1.72s" dur="1.85s" calcMode="spline" keySplines=".33 0 .2 1" fill="freeze" />}
-          </rect>
-        </mask>
-      </defs>
-      <text className="hero-handwriting-text" x="210" y="107" textAnchor="middle" mask="url(#hero-first-ink)">getting</text>
-      <text className="hero-handwriting-text" x="210" y="196" textAnchor="middle" mask="url(#hero-second-ink)">married</text>
-    </svg>
-  );
-}
-
 function AccountCard({ account }) {
   const hasAccount = account.bank && account.number;
 
@@ -194,9 +164,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
           <img src={imagePath('first-page.jpg')} alt="" />
         </figure>
         {variant === 'glass' ? (
-          <div className="hero-kicker" aria-label="getting married">
-            <HeroHandwriting />
-          </div>
+          <p className="hero-kicker"><span>getting</span><span>married</span></p>
         ) : (
           <p className="hero-kicker">GETTING MARRIED</p>
         )}
