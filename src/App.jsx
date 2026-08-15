@@ -189,13 +189,13 @@ function App({ variant, showAccounts, gallery: galleryType }) {
             <span>
               {wedding.groom.father} · {wedding.groom.mother}
             </span>
-            의 {wedding.groom.relation} <strong>{wedding.groom.name}</strong>
+            의 <em className="family-relation">{wedding.groom.relation}</em> <strong>{wedding.groom.name}</strong>
           </p>
           <p>
             <span>
               {wedding.bride.father} · {wedding.bride.mother}
             </span>
-            의 {wedding.bride.relation} <strong>{wedding.bride.name}</strong>
+            의 <em className="family-relation">{wedding.bride.relation}</em> <strong>{wedding.bride.name}</strong>
           </p>
         </div>
       </section>
