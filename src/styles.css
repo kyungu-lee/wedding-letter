@@ -86,10 +86,10 @@ footer { padding: 85px 25px 55px; text-align: center; background: #393630; color
 .design-glass .hero-kicker { top: 36px; color: #fffdf8; font: 400 clamp(88px, 24vw, 112px)/.67 'Oooh Baby', cursive; letter-spacing: -.02em; text-shadow: 0 2px 12px rgba(48,39,29,.3); }.design-glass .hero-kicker span { display: block; }.design-glass .hero-names, .design-glass .hero-rule, .design-glass .hero-date, .design-glass .hero-venue { display: none; }.design-glass .hero-glass-date { top: auto; bottom: 48px; color: #fffdf8; font: 500 19px/1 'Cormorant Garamond', serif; letter-spacing: .12em; text-shadow: 0 2px 10px rgba(48,39,29,.35); }
 
 /* Hero typography — quiet corner details leave the photograph as the focus. */
-.design-glass .hero-kicker { top: 34px; left: 26px; width: auto; text-align: left; }
-.design-glass .hero-glass-date { right: auto; bottom: 64px; left: 28px; transform: none; font-size: 17px; letter-spacing: .15em; }
-.design-glass .hero-event-info { position: absolute; z-index: 2; bottom: 34px; left: 28px; display: block; margin: 0; color: #493a2d; font: 500 10px/1.4 'Noto Serif KR', serif; letter-spacing: .04em; text-shadow: 0 1px 8px rgba(255, 250, 241, .78); }.design-glass .hero-event-info span { margin: 0 5px; }
-.design-glass .hero-names { position: absolute; z-index: 2; top: 158px; right: auto; bottom: auto; left: 28px; display: flex; align-items: baseline; gap: 7px; margin: 0; padding-top: 9px; border-top: 1px solid rgba(73,58,45,.36); color: #493a2d; text-shadow: 0 1px 8px rgba(255, 250, 241, .78); }
+.design-glass .hero-kicker { top: 34px; left: 50%; width: 100%; text-align: center; transform: translateX(-50%); }
+.design-glass .hero-glass-date { display: none; }
+.design-glass .hero-event-info { position: absolute; z-index: 2; right: 28px; bottom: 28px; left: 28px; display: block; margin: 0; color: #493a2d; font: 500 10px/1.4 'Noto Serif KR', serif; letter-spacing: .04em; text-align: center; text-shadow: 0 1px 8px rgba(255, 250, 241, .78); }.design-glass .hero-event-info span { margin: 0 5px; }
+.design-glass .hero-names { position: absolute; z-index: 2; top: 158px; right: auto; bottom: auto; left: 50%; display: flex; align-items: baseline; gap: 7px; margin: 0; padding-top: 9px; border-top: 1px solid rgba(73,58,45,.36); color: #493a2d; text-shadow: 0 1px 8px rgba(255, 250, 241, .78); transform: translateX(-50%); }
 .design-glass .hero-names h1 { margin: 0; color: inherit; font: 500 12px/1 'Cormorant Garamond', 'Noto Serif KR', serif; letter-spacing: .13em; text-shadow: inherit; }
 .design-glass .hero-names span { display: block; color: inherit; font: italic 13px/1 'Cormorant Garamond', serif; }
 .design-glass .hero-kicker, .design-glass .hero-glass-date, .design-glass .hero-names { color: #493a2d; text-shadow: 0 1px 8px rgba(255, 250, 241, .78); }
