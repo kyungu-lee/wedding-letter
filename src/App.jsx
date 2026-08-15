@@ -161,7 +161,13 @@ function App({ variant, showAccounts, gallery: galleryType }) {
           <div className="stem stem-two" />
         </div>
         <figure className="hero-photo" aria-hidden="true">
-          <img src={imagePath('first-page.jpg')} alt="" />
+          <img
+            src={imagePath('first-page-optimized.jpg')}
+            alt=""
+            width="1440"
+            height="2160"
+            fetchPriority="high"
+          />
         </figure>
         {variant === 'glass' ? (
           <p className="hero-kicker"><span>getting</span><span>married</span></p>
