@@ -96,6 +96,7 @@ footer { padding: 85px 25px 55px; text-align: center; background: #393630; color
 .design-glass .hero-names { gap: 9px; }
 .design-glass .hero-names h1 { font-size: 15px; letter-spacing: .1em; }
 .design-glass .hero-names span { font-size: 16px; }
+@media (max-width: 480px) { .design-glass .hero-names { top: 148px; } }
 .design-glass .hero-kicker { opacity: 0; filter: blur(5px); animation: hero-text-in 1.15s ease-out .12s forwards; }
 .design-glass .hero-names { opacity: 0; filter: blur(4px); animation: hero-text-in 1s ease-out .42s forwards; }
 .design-glass .hero-event-info { opacity: 0; filter: blur(3px); animation: hero-text-in 1s ease-out .68s forwards; }
