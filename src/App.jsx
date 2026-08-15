@@ -59,6 +59,14 @@ function SectionTitle({ eyebrow, children }) {
   );
 }
 
+function PetalLayer() {
+  return (
+    <div className="petal-layer" aria-hidden="true">
+      {Array.from({ length: 7 }, (_, index) => <i key={index} />)}
+    </div>
+  );
+}
+
 function AccountCard({ account }) {
   const hasAccount = account.bank && account.number;
 
@@ -95,7 +103,6 @@ function App({ variant, showAccounts, gallery: galleryType }) {
   const countdown = useCountdown(wedding.date);
   const [openAccountSide, setOpenAccountSide] = useState(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
-  const [glassSceneIndex, setGlassSceneIndex] = useState(0);
   const thumbnailStripRef = useRef(null);
   const galleryInteractionRef = useRef(false);
   const showPreviousPhoto = () => {
@@ -111,9 +118,6 @@ function App({ variant, showAccounts, gallery: galleryType }) {
     setGalleryIndex(index);
   };
   const galleryStyle = variant === 'test1' ? 'editorial' : variant === 'test3' ? 'journal' : 'story';
-  const glassMode = variant === 'glass';
-  const glassSceneCount = 8;
-
   useEffect(() => {
     if (galleryStyle !== 'story' || !galleryInteractionRef.current) return;
     const activeThumbnail = thumbnailStripRef.current?.querySelector('[aria-current="true"]');
@@ -126,7 +130,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
         if (entry.isIntersecting) entry.target.classList.add('visible');
         else if (entry.target.offsetHeight <= window.innerHeight) entry.target.classList.remove('visible');
       }),
-      { threshold: 0.15 }
+      { threshold: 0.18, rootMargin: '0px 0px -8% 0px' }
     );
     document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
     return () => observer.disconnect();
@@ -147,21 +151,24 @@ function App({ variant, showAccounts, gallery: galleryType }) {
   };
 
   return (
-    <main
-      className={`design-${variant} ${glassMode ? `glass-active-${glassSceneIndex}` : ''}`}
-    >
+    <main className={`design-${variant}`}>
       <section className="hero">
+        <PetalLayer />
         <div className="hero-art" aria-hidden="true">
           <div className="sun" />
           <div className="stem stem-one" />
           <div className="stem stem-two" />
         </div>
-        <p className="hero-kicker">WE ARE GETTING MARRIED</p>
+        <figure className="hero-photo" aria-hidden="true">
+          <img src={imagePath('first-page.jpg')} alt="" />
+        </figure>
+        <p className="hero-kicker"><span>getting</span><span>married</span></p>
         <div className="hero-names">
           <h1>{wedding.groom.firstName}</h1>
           <span>&</span>
           <h1>{wedding.bride.firstName}</h1>
         </div>
+        <p className="hero-glass-date" aria-hidden="true">2026.10.10</p>
         <div className="hero-rule" />
         <p className="hero-date">{wedding.dateLabel}</p>
         <p className="hero-venue">{wedding.venue}</p>
@@ -169,6 +176,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
       </section>
 
       <section className="invitation section">
+        <PetalLayer />
         <SectionTitle eyebrow="INVITATION">소중한 분들을 초대합니다</SectionTitle>
         <div className="message reveal">
           {wedding.message.map((line) => (
@@ -192,6 +200,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
       </section>
 
       <section className="gallery-section section">
+        <PetalLayer />
         <SectionTitle eyebrow="OUR MOMENTS">우리의 빛나는 순간</SectionTitle>
         {galleryStyle === 'editorial' ? (
           <div className="gallery-editorial reveal">
@@ -250,7 +259,10 @@ function App({ variant, showAccounts, gallery: galleryType }) {
       </section>
 
       <section className="calendar-section section">
-        <SectionTitle eyebrow="THE WEDDING DAY">2026. 10. 10</SectionTitle>
+        <PetalLayer />
+        <SectionTitle eyebrow="THE WEDDING DAY">
+          <time className="calendar-date" dateTime="2026-10-10T12:30:00+09:00">2026. 10. 10 <small>12:30 PM</small></time>
+        </SectionTitle>
         <div className="calendar reveal">
           <div className="week">
             {['일', '월', '화', '수', '목', '금', '토'].map((day) => (
@@ -316,6 +328,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
       </section>
 
       <section className="location section">
+        <PetalLayer />
         <SectionTitle eyebrow="LOCATION">오시는 길</SectionTitle>
         <div className="venue-card reveal">
           <img className="venue-map" src={imagePath('final-map.png')} alt="타니베이 호텔 약도: 일산해수욕장 앞 해수욕장5길 43" />
@@ -336,6 +349,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
       </section>
 
       <section className="access section">
+        <PetalLayer />
         <SectionTitle eyebrow="TRANSPORTATION">교통 안내</SectionTitle>
 
         <div className="access-group reveal">
@@ -386,6 +400,7 @@ function App({ variant, showAccounts, gallery: galleryType }) {
       </section>
 
       <section className="contact section">
+        <PetalLayer />
         <SectionTitle eyebrow="CONTACT">{showAccounts ? '마음을 전하는 곳' : '연락처'}</SectionTitle>
         {showAccounts && (
           <>
@@ -429,35 +444,19 @@ function App({ variant, showAccounts, gallery: galleryType }) {
       </section>
 
       <footer>
+        <PetalLayer />
         <p className="footer-names">
           {wedding.groom.firstName} <i>and</i> {wedding.bride.firstName}
         </p>
-        <p>함께해 주셔서 감사합니다.</p>
+        <p className="footer-message">
+          기쁜 날, 귀한 걸음으로 함께해 주셔서 감사합니다.
+          <br />
+          보내주신 따뜻한 마음 오래도록 간직하겠습니다.
+        </p>
         <button className="share" onClick={share}>
           청첩장 공유하기
         </button>
       </footer>
-      {glassMode && (
-        <nav className="glass-pagination" aria-label="청첩장 장면 이동">
-          <button className="glass-scene-button" onClick={() => setGlassSceneIndex((index) => index - 1)} disabled={glassSceneIndex === 0}>
-            이전
-          </button>
-          <div className="glass-scene-dots">
-            {Array.from({ length: glassSceneCount }, (_, index) => (
-              <button
-                aria-label={`${index + 1}번째 장면 보기`}
-                aria-current={index === glassSceneIndex ? 'true' : undefined}
-                className={index === glassSceneIndex ? 'active' : ''}
-                key={index}
-                onClick={() => setGlassSceneIndex(index)}
-              />
-            ))}
-          </div>
-          <button className="glass-scene-button" onClick={() => setGlassSceneIndex((index) => index + 1)} disabled={glassSceneIndex === glassSceneCount - 1}>
-            다음
-          </button>
-        </nav>
-      )}
     </main>
   );
 }
