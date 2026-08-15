@@ -162,7 +162,18 @@ function App({ variant, showAccounts, gallery: galleryType }) {
         <figure className="hero-photo" aria-hidden="true">
           <img src={imagePath('first-page.jpg')} alt="" />
         </figure>
-        <p className="hero-kicker"><span>getting</span><span>married</span></p>
+        {variant === 'glass' ? (
+          <div className="hero-kicker" aria-label="getting married">
+            <object
+              data={imagePath('hero-handwriting.svg')}
+              type="image/svg+xml"
+              aria-hidden="true"
+              tabIndex="-1"
+            />
+          </div>
+        ) : (
+          <p className="hero-kicker">GETTING MARRIED</p>
+        )}
         <div className="hero-names">
           <h1>{wedding.groom.firstName}</h1>
           <span>&</span>

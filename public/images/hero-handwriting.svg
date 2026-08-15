@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 240" role="img" aria-labelledby="title desc">
+  <title id="title">getting married</title>
+  <desc id="desc">The words getting married are written in flowing script.</desc>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Italianno&amp;display=swap');
+
+    .lettering {
+      font-family: 'Italianno', cursive;
+      font-size: 112px;
+      font-weight: 400;
+      fill: #493a2d;
+    }
+    .ink-reveal {
+      transform-box: fill-box;
+      transform-origin: left center;
+      transform: scaleX(0);
+      will-change: transform;
+    }
+    .first-pass { animation: reveal 1.7s cubic-bezier(.33, 0, .2, 1) .12s forwards; }
+    .second-pass { animation: reveal 1.85s cubic-bezier(.33, 0, .2, 1) 1.72s forwards; }
+
+    @keyframes reveal { to { transform: scaleX(1); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ink-reveal { transform: none; animation: none; }
+    }
+  </style>
+
+  <defs>
+    <linearGradient id="soft-edge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" />
+      <stop offset=".94" stop-color="#fff" />
+      <stop offset="1" stop-color="#777" />
+    </linearGradient>
+    <mask id="first-ink" maskUnits="userSpaceOnUse" x="0" y="0" width="420" height="145">
+      <rect width="420" height="240" fill="#000" />
+      <rect class="ink-reveal first-pass" x="94" y="8" width="238" height="137" fill="url(#soft-edge)" />
+    </mask>
+    <mask id="second-ink" maskUnits="userSpaceOnUse" x="0" y="91" width="420" height="135">
+      <rect width="420" height="240" fill="#000" />
+      <rect class="ink-reveal second-pass" x="74" y="91" width="276" height="135" fill="url(#soft-edge)" />
+    </mask>
+  </defs>
+
+  <text class="lettering" x="104" y="107" mask="url(#first-ink)">getting</text>
+  <text class="lettering" x="84" y="196" mask="url(#second-ink)">married</text>
+</svg>
