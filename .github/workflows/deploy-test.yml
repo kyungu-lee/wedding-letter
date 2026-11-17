@@ -1,0 +1,74 @@
+name: Deploy test preview to GitHub Pages
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out published site source
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: production
+
+      - name: Check out test design source
+        uses: actions/checkout@v4
+        with:
+          ref: design/mobile-invite-v2
+          path: test
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: production/package-lock.json
+
+      - name: Build published site
+        working-directory: production
+        run: |
+          npm ci
+          npm run lint
+          npm run build
+
+      - name: Build test site
+        working-directory: test
+        run: |
+          npm ci
+          npm run lint
+          VITE_BASE_PATH=/wedding-letter/test/ npm run build
+
+      - name: Combine published and test sites
+        run: |
+          mkdir -p pages-site/test
+          cp -R production/dist/. pages-site/
+          cp -R test/dist/. pages-site/test/
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: pages-site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}test/
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
